@@ -1,0 +1,17 @@
+Conception de la base de donnees
+Table personne :
+-id
+-nom
+-prenom
+-cin
+-adresse
+-telephone
+	-administration
+
+Table medecin( herite de personne) :
+	-id
+-specialite
+
+Table patient (herite de personne) :
+-id
+-id_couverture_social
