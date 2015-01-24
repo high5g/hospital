@@ -1,0 +1,43 @@
+Conception de la base de donnees
+
+Table personne :
+	-id
+	-nom
+	-prenom
+	-cin
+	-adresse
+	-telephone
+	-administrateur
+
+Table medecin (herite de personne) :
+	-id
+	-specialite
+
+Table patient (herite de personne) :
+	-id
+	-id_couverture_social
+	-date_entree
+	-date_sortie
+
+Table chambre :
+	-id
+	-frais_chambre
+	-etat
+	-fk_id_hopital (clé etrangere qui pointe vers la table hopital)
+
+Table hopital :
+	-id
+	-nom
+	-adresse
+
+Table facture :
+	-id
+	-fk_id_patient (clé etrangere qui pointe vers la table patient)
+	-fk_id_medecin (clé etrangere qui pointe vers la table medecin)
+	-prix
+
+Table medicament :
+	-id
+	-libelle
+	-categorie
+	-quantite
