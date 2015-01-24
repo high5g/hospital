@@ -7,7 +7,7 @@ Table personne :
 	-cin
 	-adresse
 	-telephone
-	-classe
+	-administrateur
 
 Table medecin (herite de personne) :
 	-id
@@ -15,7 +15,7 @@ Table medecin (herite de personne) :
 
 Table patient (herite de personne) :
 	-id
-	-id_couverture_sociale
+	-id_couverture_social
 	-date_entree
 	-date_sortie
 
