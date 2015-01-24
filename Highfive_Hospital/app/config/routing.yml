@@ -1,0 +1,4 @@
+hospital_user:
+    resource: "@HospitalUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
