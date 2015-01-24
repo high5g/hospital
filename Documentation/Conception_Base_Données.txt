@@ -1,43 +1,60 @@
 Conception de la base de donnees
+	
+	Table personne :
+		-id
+		-nom
+		-prenom
+		-cin
+		-adresse
+		-telephone
+		-administrateur
+	
+	Table medecin (herite de personne) :
+		-id
+		-specialite
+	
+	Table patient (herite de personne) :
+		-id
+		-id_couverture_social
+		-date_entree
+		-date_sortie
+	
+	Table chambre :
+		-id
+		-frais_chambre
+		-etat
+		-fk_id_hopital (clé etrangere qui pointe vers la table hopital)
+	
+	Table hopital :
+		-id
+		-nom
+		-adresse
+	
+	Table facture :
+		-id
+		-fk_id_patient (clé etrangere qui pointe vers la table patient)
+		-fk_id_medecin (clé etrangere qui pointe vers la table medecin)
+		-prix
+	
+	Table medicament :
+		-id
+		-libelle
+		-categorie
+		-quantite
+		
+Table rendezvous
+- id
+- fk_id_patient(clé etrangere qui pointe vers la table patient)
+- fk_id_medecin(clé etrangere qui pointe vers la table medecin)
+- date_visite
 
-Table personne :
-	-id
-	-nom
-	-prenom
-	-cin
-	-adresse
-	-telephone
-	-administrateur
+Table consultation 
+- Id
+- fk_id_rdv(clé etrangere qui pointe vers la table rendezvous)
+-  description 
 
-Table medecin (herite de personne) :
-	-id
-	-specialite
 
-Table patient (herite de personne) :
-	-id
-	-id_couverture_social
-	-date_entree
-	-date_sortie
-
-Table chambre :
-	-id
-	-frais_chambre
-	-etat
-	-fk_id_hopital (clé etrangere qui pointe vers la table hopital)
-
-Table hopital :
-	-id
-	-nom
-	-adresse
-
-Table facture :
-	-id
-	-fk_id_patient (clé etrangere qui pointe vers la table patient)
-	-fk_id_medecin (clé etrangere qui pointe vers la table medecin)
-	-prix
-
-Table medicament :
-	-id
-	-libelle
-	-categorie
-	-quantite
+Table ordonnance 
+-	id
+-	fk_id_consultation(clé etrangere qui pointe vers la table consultation)
+-	notes
