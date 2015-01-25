@@ -1,7 +1,3 @@
 high5_hospital_admin:
     resource: "@High5HospitalAdminBundle/Resources/config/routing.yml"
-    prefix:   /
-
-high5_hospital_admin_login:
-    path: /admin/login
-    defaults: { _controller: High5HospitalAdminBundle:Login:login }
+    prefix:   /admin

@@ -24,7 +24,8 @@ class LoginController extends Controller
             $result = $this->getDoctrine()->getRepository('High5\Hospital\AdminBundle\Entity\Personne')->findBy($queryData);
             if ($result == null)
             {
-                return $this->render('High5HospitalAdminBundle:Login:error.html.twig', array('username' => $username));
+                $message = "Login failed. No match has been found for the specified username.";
+                return $this->render('High5HospitalAdminBundle:Default:error.html.twig', array('message' => $message));
             }
             return $this->render('High5HospitalAdminBundle:Login:success.html.twig', array('username' => $username));
         }

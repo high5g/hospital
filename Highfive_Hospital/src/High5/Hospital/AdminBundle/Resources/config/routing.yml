@@ -1,3 +1,11 @@
 high5_hospital_admin_homepage:
     path:     /hello/{name}
     defaults: { _controller: High5HospitalAdminBundle:Default:index }
+
+high5_hospital_admin_login:
+    path: /login
+    defaults: { _controller: High5HospitalAdminBundle:Login:login }
+    
+high5_hospital_admin_create_hospital:
+    path: /hospital/create
+    defaults: {_controller: High5HospitalAdminBundle:Default:addHospital }
