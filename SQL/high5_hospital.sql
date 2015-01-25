@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.1.12
 -- http://www.phpmyadmin.net
 --
--- Client :  127.0.0.1
--- Généré le :  Sam 24 Janvier 2015 à 17:40
--- Version du serveur :  5.6.17
--- Version de PHP :  5.5.12
+-- Host: 127.0.0.1
+-- Generation Time: Jan 25, 2015 at 10:35 AM
+-- Server version: 5.6.16
+-- PHP Version: 5.5.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données :  `high5_hospital`
+-- Database: `high5_hospital`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `chambre`
+-- Table structure for table `chambre`
 --
 
 CREATE TABLE IF NOT EXISTS `chambre` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `chambre` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `consultation`
+-- Table structure for table `consultation`
 --
 
 CREATE TABLE IF NOT EXISTS `consultation` (
@@ -51,23 +51,20 @@ CREATE TABLE IF NOT EXISTS `consultation` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `facture`
+-- Table structure for table `facture`
 --
 
 CREATE TABLE IF NOT EXISTS `facture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_id_patient` int(11) NOT NULL,
-  `fk_id_medecin` int(11) NOT NULL,
-  `prix` float NOT NULL,
+  `fk_id_consultation` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_id_patient` (`fk_id_patient`),
-  KEY `fk_id_medecin` (`fk_id_medecin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  KEY `fk_id_consultation` (`fk_id_consultation`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `hopital`
+-- Table structure for table `hopital`
 --
 
 CREATE TABLE IF NOT EXISTS `hopital` (
@@ -80,13 +77,14 @@ CREATE TABLE IF NOT EXISTS `hopital` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `medecin`
+-- Table structure for table `medecin`
 --
 
 CREATE TABLE IF NOT EXISTS `medecin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `specialite` varchar(100) NOT NULL,
   `fk_id_personne` int(11) NOT NULL,
+  `tarif_par_consultation` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fk_id_personne` (`fk_id_personne`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
@@ -94,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `medecin` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `medicament`
+-- Table structure for table `medicament`
 --
 
 CREATE TABLE IF NOT EXISTS `medicament` (
@@ -102,13 +100,15 @@ CREATE TABLE IF NOT EXISTS `medicament` (
   `libelle` varchar(30) NOT NULL,
   `categorie` varchar(30) NOT NULL,
   `quantite` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  `fk_id_hopital` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_id_hopital` (`fk_id_hopital`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ordonnance`
+-- Table structure for table `ordonnance`
 --
 
 CREATE TABLE IF NOT EXISTS `ordonnance` (
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `ordonnance` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `patient`
+-- Table structure for table `patient`
 --
 
 CREATE TABLE IF NOT EXISTS `patient` (
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `personne`
+-- Table structure for table `personne`
 --
 
 CREATE TABLE IF NOT EXISTS `personne` (
@@ -149,13 +149,17 @@ CREATE TABLE IF NOT EXISTS `personne` (
   `adresse` varchar(250) NOT NULL,
   `telephone` int(11) NOT NULL,
   `classe` enum('0','1','2') NOT NULL,
-  PRIMARY KEY (`id`)
+  `login` varchar(30) NOT NULL,
+  `mdp` varchar(30) NOT NULL,
+  `fk_id_hopital` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_id_hopital` (`fk_id_hopital`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `rendezvous`
+-- Table structure for table `rendezvous`
 --
 
 CREATE TABLE IF NOT EXISTS `rendezvous` (
@@ -169,49 +173,59 @@ CREATE TABLE IF NOT EXISTS `rendezvous` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `chambre`
+-- Constraints for table `chambre`
 --
 ALTER TABLE `chambre`
   ADD CONSTRAINT `chambre_ibfk_1` FOREIGN KEY (`fk_id_hopital`) REFERENCES `hopital` (`id`);
 
 --
--- Contraintes pour la table `consultation`
+-- Constraints for table `consultation`
 --
 ALTER TABLE `consultation`
   ADD CONSTRAINT `consultation_ibfk_1` FOREIGN KEY (`fk_id_rdv`) REFERENCES `rendezvous` (`id`);
 
 --
--- Contraintes pour la table `facture`
+-- Constraints for table `facture`
 --
 ALTER TABLE `facture`
-  ADD CONSTRAINT `facture_ibfk_3` FOREIGN KEY (`fk_id_medecin`) REFERENCES `medecin` (`id`),
-  ADD CONSTRAINT `facture_ibfk_1` FOREIGN KEY (`fk_id_patient`) REFERENCES `patient` (`id`),
-  ADD CONSTRAINT `facture_ibfk_2` FOREIGN KEY (`fk_id_patient`) REFERENCES `patient` (`id`);
+  ADD CONSTRAINT `facture_ibfk_1` FOREIGN KEY (`fk_id_consultation`) REFERENCES `consultation` (`id`);
 
 --
--- Contraintes pour la table `medecin`
+-- Constraints for table `medecin`
 --
 ALTER TABLE `medecin`
   ADD CONSTRAINT `medecin_ibfk_1` FOREIGN KEY (`fk_id_personne`) REFERENCES `personne` (`id`);
 
 --
--- Contraintes pour la table `ordonnance`
+-- Constraints for table `medicament`
+--
+ALTER TABLE `medicament`
+  ADD CONSTRAINT `medicament_ibfk_1` FOREIGN KEY (`fk_id_hopital`) REFERENCES `hopital` (`id`);
+
+--
+-- Constraints for table `ordonnance`
 --
 ALTER TABLE `ordonnance`
   ADD CONSTRAINT `ordonnance_ibfk_1` FOREIGN KEY (`fk_id_consultation`) REFERENCES `consultation` (`id`);
 
 --
--- Contraintes pour la table `patient`
+-- Constraints for table `patient`
 --
 ALTER TABLE `patient`
   ADD CONSTRAINT `patient_ibfk_1` FOREIGN KEY (`fk_id_personne`) REFERENCES `personne` (`id`);
 
 --
--- Contraintes pour la table `rendezvous`
+-- Constraints for table `personne`
+--
+ALTER TABLE `personne`
+  ADD CONSTRAINT `personne_ibfk_1` FOREIGN KEY (`fk_id_hopital`) REFERENCES `hopital` (`id`);
+
+--
+-- Constraints for table `rendezvous`
 --
 ALTER TABLE `rendezvous`
   ADD CONSTRAINT `rendezvous_ibfk_2` FOREIGN KEY (`fk_id_medecin`) REFERENCES `medecin` (`id`),
