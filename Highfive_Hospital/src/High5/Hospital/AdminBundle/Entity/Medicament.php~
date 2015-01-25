@@ -1,0 +1,56 @@
+<?php
+
+namespace High5\Hospital\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Medicament
+ *
+ * @ORM\Table(name="medicament", indexes={@ORM\Index(name="fk_id_hopital", columns={"fk_id_hopital"})})
+ * @ORM\Entity
+ */
+class Medicament
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelle", type="string", length=30, nullable=false)
+     */
+    private $libelle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="categorie", type="string", length=30, nullable=false)
+     */
+    private $categorie;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quantite", type="integer", nullable=false)
+     */
+    private $quantite;
+
+    /**
+     * @var \Hopital
+     *
+     * @ORM\ManyToOne(targetEntity="Hopital")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fk_id_hopital", referencedColumnName="id")
+     * })
+     */
+    private $fkHopital;
+
+
+}

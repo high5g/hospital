@@ -1,0 +1,91 @@
+<?php
+
+namespace High5\Hospital\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Personne
+ *
+ * @ORM\Table(name="personne", indexes={@ORM\Index(name="fk_id_hopital", columns={"fk_id_hopital"})})
+ * @ORM\Entity
+ */
+class Personne
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=30, nullable=false)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom", type="string", length=30, nullable=false)
+     */
+    private $prenom;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cin", type="integer", nullable=false)
+     */
+    private $cin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=250, nullable=false)
+     */
+    private $adresse;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telephone", type="integer", nullable=false)
+     */
+    private $telephone;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="classe", type="integer", nullable=false)
+     */
+    private $classe;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=30, nullable=false)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mdp", type="string", length=30, nullable=false)
+     */
+    private $mdp;
+
+    /**
+     * @var \Hopital
+     *
+     * @ORM\ManyToOne(targetEntity="Hopital")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fk_id_hopital", referencedColumnName="id")
+     * })
+     */
+    private $fkHopital;
+
+
+}
