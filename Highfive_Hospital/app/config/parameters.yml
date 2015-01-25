@@ -1,17 +1,1 @@
-# This file is auto-generated during the composer install
-parameters:
-    database_driver: pdo_mysql
-    database_host: 127.0.0.1
-    database_port: null
-    database_name: symfony
-    database_user: root
-    database_password: null
-    mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
-    locale: en
-    secret: ThisTokenIsNotSoSecretChangeIt
-    debug_toolbar: true
-    debug_redirects: false
-    use_assetic_controller: true
+{ parameters: { database_driver: pdo_mysql, database_host: 127.0.0.1, database_port: 3306, database_name: high5_hospital, database_user: root, database_password: null, mailer_transport: smtp, mailer_host: 127.0.0.1, mailer_user: null, mailer_password: null, locale: en, secret: 8cb40773ab6f1329842610cb3fcb5f3d8, debug_toolbar: true, debug_redirects: false, use_assetic_controller: true, database_path: null } }

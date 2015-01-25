@@ -1,0 +1,4 @@
+high5_hospital_admin:
+    resource: "@High5HospitalAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
