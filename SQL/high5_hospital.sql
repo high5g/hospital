@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2015 at 12:29 PM
+-- Generation Time: Jan 25, 2015 at 10:35 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -29,9 +29,8 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `chambre` (
   `id` int(11) NOT NULL,
   `frais_chambre` int(11) NOT NULL,
-  `etat` tinyint(1) NOT NULL,
+  `etat` enum('0','1') NOT NULL,
   `fk_id_hopital` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
   KEY `fk_id_hopital` (`fk_id_hopital`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -149,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `personne` (
   `cin` int(11) NOT NULL,
   `adresse` varchar(250) NOT NULL,
   `telephone` int(11) NOT NULL,
-  `classe` int(11) NOT NULL,
+  `classe` enum('0','1','2') NOT NULL,
   `login` varchar(30) NOT NULL,
   `mdp` varchar(30) NOT NULL,
   `fk_id_hopital` int(11) NOT NULL,
