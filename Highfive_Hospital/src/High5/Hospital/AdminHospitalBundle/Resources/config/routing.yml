@@ -1,0 +1,7 @@
+high5_hospital_admin_hospital_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: High5HospitalAdminHospitalBundle:Default:index }
+    
+high5_hospital_adminhospital_login:
+    path: /authentification
+    defaults: { _controller: High5HospitalAdminHospitalBundle:Default:login }
