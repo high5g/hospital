@@ -66,9 +66,9 @@ class Personne
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=30, nullable=false)
+     * @ORM\Column(name="username", type="string", length=30, nullable=false)
      */
-    private $login;
+    private $username;
 
     /**
      * @var string
@@ -76,6 +76,13 @@ class Personne
      * @ORM\Column(name="mdp", type="string", length=30, nullable=false)
      */
     private $mdp;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '0';
 
     /**
      * @var \Hopital

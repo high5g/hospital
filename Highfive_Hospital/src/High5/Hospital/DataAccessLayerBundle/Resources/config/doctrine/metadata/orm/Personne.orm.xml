@@ -13,8 +13,9 @@
     <field name="adresse" type="string" column="adresse" length="250" nullable="false"/>
     <field name="telephone" type="integer" column="telephone" nullable="false"/>
     <field name="classe" type="integer" column="classe" nullable="false"/>
-    <field name="login" type="string" column="login" length="30" nullable="false"/>
+    <field name="username" type="string" column="username" length="30" nullable="false"/>
     <field name="mdp" type="string" column="mdp" length="30" nullable="false"/>
+    <field name="isActive" type="boolean" column="is_active" nullable="false"/>
     <many-to-one field="fkHopital" target-entity="Hopital">
       <join-columns>
         <join-column name="fk_id_hopital" referenced-column-name="id"/>

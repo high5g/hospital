@@ -3,6 +3,7 @@
 namespace High5\Hospital\DataAccessLayerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Personne
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="personne", indexes={@ORM\Index(name="fk_id_hopital", columns={"fk_id_hopital"})})
  * @ORM\Entity
  */
-class Personne
+class Personne implements UserInterface, \Serializable
 {
     /**
      * @var integer
@@ -66,16 +67,23 @@ class Personne
     /**
      * @var string
      *
-     * @ORM\Column(name="login", type="string", length=30, nullable=false)
+     * @ORM\Column(name="username", type="string", length=30, nullable=false)
      */
-    private $login;
+    private $username;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mdp", type="string", length=30, nullable=false)
+     * @ORM\Column(name="mdp", type="string", length=250, nullable=false)
      */
     private $mdp;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_active", type="boolean", nullable=false)
+     */
+    private $isActive = '0';
 
     /**
      * @var \Hopital
@@ -238,26 +246,26 @@ class Personne
     }
 
     /**
-     * Set login
+     * Set username
      *
-     * @param string $login
+     * @param string $username
      * @return Personne
      */
-    public function setLogin($login)
+    public function setUsername($username)
     {
-        $this->login = $login;
+        $this->username = $username;
     
         return $this;
     }
 
     /**
-     * Get login
+     * Get username
      *
      * @return string 
      */
-    public function getLogin()
+    public function getUsername()
     {
-        return $this->login;
+        return $this->username;
     }
 
     /**
@@ -284,6 +292,29 @@ class Personne
     }
 
     /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return Personne
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
      * Set fkHopital
      *
      * @param \High5\Hospital\DataAccessLayerBundle\Entity\Hopital $fkHopital
@@ -305,4 +336,43 @@ class Personne
     {
         return $this->fkHopital;
     }
+
+    public function eraseCredentials() {
+        
+    }
+
+    public function getPassword() {
+        return $this->mdp;
+    }
+
+    public function getRoles() {
+        return array('ROLE_USER', 'ROLE_ADMIN');
+    }
+
+    public function getSalt() {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function serialize() {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->mdp,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    public function unserialize($serialized) {
+        list (
+            $this->id,
+            $this->username,
+            $this->mdp,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
+    }
+
 }

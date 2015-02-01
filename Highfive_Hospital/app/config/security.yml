@@ -3,7 +3,9 @@
 security:
     # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        High5\Hospital\DataAccessLayerBundle\Entity\Personne:
+            algorithm: bcrypt
+            cost: 12
 
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
@@ -12,16 +14,13 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory:
-                users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+        administrators:
+            entity: { class: High5HospitalDataAccessLayerBundle:Personne, property: username }
 
     # the main part of the security, where you can set up firewalls
     # for specific sections of your app
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
+        # disables authentication for assets and the profiler, adapt it according to your needs*
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false

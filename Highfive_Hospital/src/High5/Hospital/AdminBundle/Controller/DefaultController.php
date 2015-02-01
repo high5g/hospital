@@ -3,7 +3,6 @@
 namespace High5\Hospital\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use High5\Hospital\DataAccessLayerBundle\Entity\Hopital;
 
 class DefaultController extends Controller
@@ -12,8 +11,8 @@ class DefaultController extends Controller
     {
         return $this->render('High5HospitalAdminBundle:Default:index.html.twig', array('name' => $name));
     }
-
-    public function addHospitalAction(Request $request)
+       
+    public function createHospitalAction(Request $request)
     {
         $hospital = new Hopital();
         $form = $this->createFormBuilder($hospital)
@@ -29,7 +28,7 @@ class DefaultController extends Controller
             $doctrineManager->persist($hospital);
             $doctrineManager->flush();
         }
-        return $this->render('High5HospitalAdminBundle:Default:hospital.factory.html.twig',
+        return $this->render('High5HospitalAdminHospitalBundle:Default:hospital.factory.html.twig',
                 array('form' => $form->createView()));
     }
 }
