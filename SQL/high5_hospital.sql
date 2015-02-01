@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2015 at 10:35 AM
+-- Generation Time: Feb 01, 2015 at 10:59 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `high5_hospital`
 --
+CREATE DATABASE IF NOT EXISTS `high5_hospital` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `high5_hospital`;
 
 -- --------------------------------------------------------
 
@@ -27,12 +29,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `chambre` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `frais_chambre` int(11) NOT NULL,
-  `etat` enum('0','1') NOT NULL,
-  `fk_id_hopital` int(11) NOT NULL,
+  `etat` tinyint(1) NOT NULL,
+  `fk_id_hopital` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `fk_id_hopital` (`fk_id_hopital`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -42,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `chambre` (
 
 CREATE TABLE IF NOT EXISTS `consultation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_id_rdv` int(11) NOT NULL,
+  `fk_id_rdv` int(11) DEFAULT NULL,
   `description` varchar(500) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_rdv` (`fk_id_rdv`)
@@ -56,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `consultation` (
 
 CREATE TABLE IF NOT EXISTS `facture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_id_consultation` int(11) NOT NULL,
+  `fk_id_consultation` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_consultation` (`fk_id_consultation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -72,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `hopital` (
   `nom` varchar(30) NOT NULL,
   `adresse` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -83,11 +86,11 @@ CREATE TABLE IF NOT EXISTS `hopital` (
 CREATE TABLE IF NOT EXISTS `medecin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `specialite` varchar(100) NOT NULL,
-  `fk_id_personne` int(11) NOT NULL,
+  `fk_id_personne` int(11) DEFAULT NULL,
   `tarif_par_consultation` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fk_id_personne` (`fk_id_personne`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `medicament` (
   `libelle` varchar(30) NOT NULL,
   `categorie` varchar(30) NOT NULL,
   `quantite` int(11) NOT NULL,
-  `fk_id_hopital` int(11) NOT NULL,
+  `fk_id_hopital` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_hopital` (`fk_id_hopital`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -113,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `medicament` (
 
 CREATE TABLE IF NOT EXISTS `ordonnance` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_id_consultation` int(11) NOT NULL,
+  `fk_id_consultation` int(11) DEFAULT NULL,
   `notes` varchar(500) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_consultation` (`fk_id_consultation`)
@@ -130,10 +133,10 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `id_couverture_sociale` int(11) NOT NULL,
   `date_entree` date NOT NULL,
   `date_sortie` date NOT NULL,
-  `fk_id_personne` int(11) NOT NULL,
+  `fk_id_personne` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fk_id_personne` (`fk_id_personne`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -148,13 +151,13 @@ CREATE TABLE IF NOT EXISTS `personne` (
   `cin` int(11) NOT NULL,
   `adresse` varchar(250) NOT NULL,
   `telephone` int(11) NOT NULL,
-  `classe` enum('0','1','2') NOT NULL,
+  `classe` int(11) NOT NULL,
   `login` varchar(30) NOT NULL,
   `mdp` varchar(30) NOT NULL,
-  `fk_id_hopital` int(11) NOT NULL,
+  `fk_id_hopital` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_hopital` (`fk_id_hopital`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -164,8 +167,8 @@ CREATE TABLE IF NOT EXISTS `personne` (
 
 CREATE TABLE IF NOT EXISTS `rendezvous` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fk_id_patient` int(11) NOT NULL,
-  `fk_id_medecin` int(11) NOT NULL,
+  `fk_id_patient` int(11) DEFAULT NULL,
+  `fk_id_medecin` int(11) DEFAULT NULL,
   `date_visite` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_id_patient` (`fk_id_patient`),
@@ -228,8 +231,8 @@ ALTER TABLE `personne`
 -- Constraints for table `rendezvous`
 --
 ALTER TABLE `rendezvous`
-  ADD CONSTRAINT `rendezvous_ibfk_2` FOREIGN KEY (`fk_id_medecin`) REFERENCES `medecin` (`id`),
-  ADD CONSTRAINT `rendezvous_ibfk_1` FOREIGN KEY (`fk_id_patient`) REFERENCES `patient` (`id`);
+  ADD CONSTRAINT `rendezvous_ibfk_1` FOREIGN KEY (`fk_id_patient`) REFERENCES `patient` (`id`),
+  ADD CONSTRAINT `rendezvous_ibfk_2` FOREIGN KEY (`fk_id_medecin`) REFERENCES `medecin` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
