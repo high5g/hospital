@@ -21,7 +21,7 @@ class LoginController extends Controller
             $username = $form["username"]->getData();
             $password = $form["password"]->getData();
             $queryData = array('login' => $username, 'mdp' => $password);
-            $result = $this->getDoctrine()->getRepository('High5\Hospital\AdminBundle\Entity\Personne')->findBy($queryData);
+            $result = $this->getDoctrine()->getRepository('High5\Hospital\DataAccessLayerBundle\Entity\Personne')->findBy($queryData);
             if ($result == null)
             {
                 $message = "Login failed. No match has been found for the specified username.";

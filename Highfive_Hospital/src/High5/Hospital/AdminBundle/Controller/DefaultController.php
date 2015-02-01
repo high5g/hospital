@@ -4,7 +4,7 @@ namespace High5\Hospital\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use High5\Hospital\AdminBundle\Entity\Hopital;
+use High5\Hospital\DataAccessLayerBundle\Entity\Hopital;
 
 class DefaultController extends Controller
 {

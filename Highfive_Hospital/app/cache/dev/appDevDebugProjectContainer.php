@@ -646,10 +646,10 @@ class appDevDebugProjectContainer extends Container
         $c->setNamespace('sf2orm_default_8d9ab0b38715b8e9cfab0d30add41bcf943ccee4e8638bb804c9cd673b41bbd3');
 
         $d = new \Doctrine\ORM\Mapping\Driver\DriverChain();
-        $d->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($this->get('annotation_reader'), array(0 => 'C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\src\\High5\\Hospital\\AdminBundle\\Entity')), 'High5\\Hospital\\AdminBundle\\Entity');
+        $d->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($this->get('annotation_reader'), array(0 => 'C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\src\\High5\\Hospital\\DataAccessLayerBundle\\Entity')), 'High5\\Hospital\\DataAccessLayerBundle\\Entity');
 
         $e = new \Doctrine\ORM\Configuration();
-        $e->setEntityNamespaces(array('High5HospitalAdminBundle' => 'High5\\Hospital\\AdminBundle\\Entity'));
+        $e->setEntityNamespaces(array('High5HospitalDataAccessLayerBundle' => 'High5\\Hospital\\DataAccessLayerBundle\\Entity'));
         $e->setMetadataCacheImpl($a);
         $e->setQueryCacheImpl($b);
         $e->setResultCacheImpl($c);
@@ -3054,6 +3054,8 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\vendor\\symfony\\swiftmailer-bundle\\Symfony\\Bundle\\SwiftmailerBundle/Resources/views', 'Swiftmailer');
         $instance->addPath('C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\vendor\\doctrine\\doctrine-bundle\\Doctrine\\Bundle\\DoctrineBundle/Resources/views', 'Doctrine');
         $instance->addPath('C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\src\\High5\\Hospital\\AdminBundle/Resources/views', 'High5HospitalAdmin');
+        $instance->addPath('C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\src\\High5\\Hospital\\AdminHospitalBundle/Resources/views', 'High5HospitalAdminHospital');
+        $instance->addPath('C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\src\\High5\\Hospital\\DataAccessLayerBundle/Resources/views', 'High5HospitalDataAccessLayer');
         $instance->addPath('C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\src\\Acme\\DemoBundle/Resources/views', 'AcmeDemo');
         $instance->addPath('C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('C:\\xampp\\htdocs\\hospital\\Highfive_Hospital\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views', 'SensioDistribution');
@@ -3542,6 +3544,8 @@ class appDevDebugProjectContainer extends Container
                 'DoctrineBundle' => 'Doctrine\\Bundle\\DoctrineBundle\\DoctrineBundle',
                 'SensioFrameworkExtraBundle' => 'Sensio\\Bundle\\FrameworkExtraBundle\\SensioFrameworkExtraBundle',
                 'High5HospitalAdminBundle' => 'High5\\Hospital\\AdminBundle\\High5HospitalAdminBundle',
+                'High5HospitalAdminHospitalBundle' => 'High5\\Hospital\\AdminHospitalBundle\\High5HospitalAdminHospitalBundle',
+                'High5HospitalDataAccessLayerBundle' => 'High5\\Hospital\\DataAccessLayerBundle\\High5HospitalDataAccessLayerBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',

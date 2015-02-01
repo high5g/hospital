@@ -1,0 +1,42 @@
+<?php
+
+namespace High5\Hospital\DataAccessLayerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Ordonnance
+ *
+ * @ORM\Table(name="ordonnance", indexes={@ORM\Index(name="fk_id_consultation", columns={"fk_id_consultation"})})
+ * @ORM\Entity
+ */
+class Ordonnance
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notes", type="string", length=500, nullable=false)
+     */
+    private $notes;
+
+    /**
+     * @var \Consultation
+     *
+     * @ORM\ManyToOne(targetEntity="Consultation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="fk_id_consultation", referencedColumnName="id")
+     * })
+     */
+    private $fkConsultation;
+
+
+}

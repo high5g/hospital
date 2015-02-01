@@ -17,6 +17,8 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="High5HospitalAdminBundle">High5\Hospital\AdminBundle\High5HospitalAdminBundle</parameter>
+      <parameter key="High5HospitalAdminHospitalBundle">High5\Hospital\AdminHospitalBundle\High5HospitalAdminHospitalBundle</parameter>
+      <parameter key="High5HospitalDataAccessLayerBundle">High5\Hospital\DataAccessLayerBundle\High5HospitalDataAccessLayerBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -2373,7 +2375,7 @@
         <service class="Doctrine\ORM\Configuration" public="false">
           <call method="setEntityNamespaces">
             <argument type="collection">
-              <argument key="High5HospitalAdminBundle">High5\Hospital\AdminBundle\Entity</argument>
+              <argument key="High5HospitalDataAccessLayerBundle">High5\Hospital\DataAccessLayerBundle\Entity</argument>
             </argument>
           </call>
           <call method="setMetadataCacheImpl">
@@ -2411,11 +2413,11 @@
                     <service class="Doctrine\ORM\Mapping\Driver\AnnotationDriver" public="false">
                       <argument type="service" id="annotation_reader"/>
                       <argument type="collection">
-                        <argument>C:\xampp\htdocs\hospital\Highfive_Hospital\src\High5\Hospital\AdminBundle\Entity</argument>
+                        <argument>C:\xampp\htdocs\hospital\Highfive_Hospital\src\High5\Hospital\DataAccessLayerBundle\Entity</argument>
                       </argument>
                     </service>
                   </argument>
-                  <argument>High5\Hospital\AdminBundle\Entity</argument>
+                  <argument>High5\Hospital\DataAccessLayerBundle\Entity</argument>
                 </call>
               </service>
             </argument>
@@ -2845,6 +2847,14 @@
       <call method="addPath">
         <argument>C:\xampp\htdocs\hospital\Highfive_Hospital\src\High5\Hospital\AdminBundle/Resources/views</argument>
         <argument>High5HospitalAdmin</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\hospital\Highfive_Hospital\src\High5\Hospital\AdminHospitalBundle/Resources/views</argument>
+        <argument>High5HospitalAdminHospital</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\xampp\htdocs\hospital\Highfive_Hospital\src\High5\Hospital\DataAccessLayerBundle/Resources/views</argument>
+        <argument>High5HospitalDataAccessLayer</argument>
       </call>
       <call method="addPath">
         <argument>C:\xampp\htdocs\hospital\Highfive_Hospital\src\Acme\DemoBundle/Resources/views</argument>

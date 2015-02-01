@@ -1,3 +1,11 @@
+high5_hospital_data_access_layer:
+    resource: "@High5HospitalDataAccessLayerBundle/Resources/config/routing.yml"
+    prefix:   /
+
 high5_hospital_admin:
     resource: "@High5HospitalAdminBundle/Resources/config/routing.yml"
     prefix:   /admin
+    
+high5_hospital_admin_hospital:
+    resource: "@High5HospitalAdminHospitalBundle/Resources/config/routing.yml"
+    prefix:   /admin_hospital

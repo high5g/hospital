@@ -4,8 +4,7 @@ namespace High5\Hospital\AdminHospitalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use High5\Hospital\AdminHospitalBundle\Entity\Personne;
-use High5\Hospital\AdminHospitalBundle\Entity\Hopital;
+use High5\Hospital\DataAccessLayerBundle\Entity\Personne;
 
 class DefaultController extends Controller
 {
@@ -20,7 +19,7 @@ class DefaultController extends Controller
             ->add('login', 'text', array('label' => 'Login'))
             ->add('mdp', 'password', array('label' => 'Mot de passe'))
             ->add('fkHopital', 'entity', array(
-                'class' => 'High5HospitalAdminHospitalBundle:Hopital',
+                'class' => 'High5HospitalDataAccessLayerBundle:Hopital',
                 'property' => 'nom',
                 'label' => 'Hopital'))
             ->add('btn_login', 'submit', array('label' => 'Login'))
@@ -33,7 +32,7 @@ class DefaultController extends Controller
             $password = $form["mdp"]->getData();
             $hopital = $form["fkHopital"]->getData();
             $queryData = array('login' => $login, 'mdp' => $password, 'fkHopital' => $hopital->getId());
-            $result = $this->getDoctrine()->getRepository('High5\Hospital\AdminHospitalBundle\Entity\Personne')->findBy($queryData);
+            $result = $this->getDoctrine()->getRepository('High5\Hospital\DataAccessLayerBundle\Entity\Personne')->findBy($queryData);
             if ($result == null)
             {
                 $message = "Login failed. No match has been found for the specified username.";

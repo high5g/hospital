@@ -1,0 +1,3 @@
+high5_hospital_data_access_layer_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: High5HospitalDataAccessLayerBundle:Default:index }
