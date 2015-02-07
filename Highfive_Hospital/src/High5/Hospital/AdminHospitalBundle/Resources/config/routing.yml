@@ -5,3 +5,15 @@ high5_hospital_admin_hospital_homepage:
 high5_hospital_adminhospital_login:
     path: /authentification
     defaults: { _controller: High5HospitalAdminHospitalBundle:Default:login }
+
+high5_hospital_adminhospital_add_patient:
+    path: /add/patient
+    defaults: { _controller: High5HospitalAdminHospitalBundle:Default:addPatient }
+
+high5_hospital_adminhospital_add_doctor:
+    path: /add/doctor
+    defaults: { _controller: High5HospitalAdminHospitalBundle:Default:addDoctor }
+
+high5_hospital_adminhospital_logout:
+    path: /logout
+    defaults: { _controller: High5HospitalAdminHospitalBundle:Default:logOut }

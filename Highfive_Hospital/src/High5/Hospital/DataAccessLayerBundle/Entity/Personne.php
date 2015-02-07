@@ -360,6 +360,7 @@ class Personne implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->mdp,
+            $this->fkHopital,
             // see section on salt below
             // $this->salt,
         ));
@@ -370,6 +371,7 @@ class Personne implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->mdp,
+            $this->fkHopital,
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);

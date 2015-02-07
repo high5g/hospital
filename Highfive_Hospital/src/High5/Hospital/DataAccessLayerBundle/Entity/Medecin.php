@@ -38,7 +38,7 @@ class Medecin
     /**
      * @var \Personne
      *
-     * @ORM\ManyToOne(targetEntity="Personne")
+     * @ORM\ManyToOne(targetEntity="Personne", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="fk_id_personne", referencedColumnName="id")
      * })
