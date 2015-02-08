@@ -8,8 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use High5\Hospital\AdminHospitalBundle\Form\PatientForm;
 use High5\Hospital\AdminHospitalBundle\Form\DoctorForm;
 use High5\Hospital\DataAccessLayerBundle\Entity\Personne;
-use High5\Hospital\DataAccessLayerBundle\Entity\Patient;
-use High5\Hospital\DataAccessLayerBundle\Entity\Medecin;
 
 class DefaultController extends Controller
 {
@@ -28,8 +26,13 @@ class DefaultController extends Controller
 
     public function indexAction()
     {
-        $personne = $this->getActiveUser();
-        return $this->render('High5HospitalAdminHospitalBundle:Default:index.html.twig', array('username' => $personne->getUsername()));
+        $user = $this->getActiveUser();
+        if ($user == null)
+        {
+            return $this->redirect($this->generateUrl('high5_hospital_adminhospital_login'));
+        }
+        return $this->render('High5HospitalAdminHospitalBundle:Default:homepage.html.twig',
+                array('username' => $user->getNom() . ' ' . $user->getPrenom()));
     }
 
     public function loginAction(Request $request)
@@ -37,12 +40,12 @@ class DefaultController extends Controller
         $personne = new Personne();
         $form = $this->createFormBuilder($personne)
             ->add('username', 'text', array('label' => 'Username'))
-            ->add('mdp', 'password', array('label' => 'Mot de passe'))
+            ->add('mdp', 'password', array('label' => 'Password'))
             ->add('fkHopital', 'entity', array(
                 'class' => 'High5HospitalDataAccessLayerBundle:Hopital',
                 'property' => 'nom',
-                'label' => 'Hopital'))
-            ->add('btn_login', 'submit', array('label' => 'Login'))
+                'label' => false))
+            ->add('btn_login', 'submit', array('label' => 'Login', 'attr' => array('class' => 'login login-submit')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -55,7 +58,7 @@ class DefaultController extends Controller
             $queryData = array('username' => $username, 'mdp' => $password, 'fkHopital' => $hopital->getId(),
                 'classe' => 0);
 
-            $dataAccessObject = $this->getDoctrine()->getRepository('High5\Hospital\DataAccessLayerBundle\Entity\Personne');
+            $dataAccessObject = $this->getDoctrine()->getRepository('High5HospitalDataAccessLayerBundle:Personne');
             $result = $dataAccessObject->findBy($queryData);
 
             if ($result == null)
@@ -65,11 +68,11 @@ class DefaultController extends Controller
             }
 
             $session = new Session();
-            $session->set('active_user', $personne);
+            $session->set('active_user', $result[0]);
 
-            return $this->redirect($this->generateUrl('high5_hospital_admin_hospital_homepage'));
+            return $this->redirect($this->generateUrl('high5_hospital_adminhospital_homepage'));
         }
-        return $this->render('High5HospitalAdminHospitalBundle:Default:authentification.html.twig',
+        return $this->render('High5HospitalAdminHospitalBundle:Default:login.html.twig',
                 array('login_form' => $form->createView()));
     }
 

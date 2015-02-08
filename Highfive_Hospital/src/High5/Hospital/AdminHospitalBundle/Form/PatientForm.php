@@ -14,7 +14,7 @@ class PatientForm extends PersonForm
         $builder->add('idCouvertureSociale', 'number', array('label' => 'Id couverture sociale'))
             ->add('dateEntree', 'date', array('label' => 'Date d\'entrée'))
             ->add('dateSortie', 'date', array('label' => 'Date de sortie'))
-            ->add('insert', 'submit', array('label' => 'Add patient'));
+            ->add('insert', 'submit', array('label' => 'Add patient', 'attr' => array('class' => 'login login-submit')));
     }
 
     public function parseFormData($data)

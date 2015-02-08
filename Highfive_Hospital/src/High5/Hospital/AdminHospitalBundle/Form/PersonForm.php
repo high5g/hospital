@@ -12,7 +12,7 @@ class PersonForm extends AbstractType
         $builder->add('nom', 'text')
             ->add('prenom', 'text')
             ->add('cin', 'number', array('label' => 'N° CIN'))
-            ->add('adresse', 'textarea')
+            ->add('adresse', 'textarea', array('attr' => array('style' => 'width:100%')))
             ->add('telephone', 'number')
             ->add('username', 'text')
             ->add('mdp', 'password', array('label' => 'Mot de passe'));
