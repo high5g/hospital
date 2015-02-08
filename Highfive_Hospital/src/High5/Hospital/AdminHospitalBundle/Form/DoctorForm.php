@@ -13,7 +13,7 @@ class DoctorForm extends PersonForm
         parent::buildForm($builder, $options);
         $builder->add('specialite', 'text')
             ->add('tarifParConsultation', 'money', array('label' => 'Tarif consultation '))
-            ->add('insert', 'submit', array('label' => 'Add doctor'));
+            ->add('insert', 'submit', array('label' => 'Add doctor', 'attr' => array('class' => 'login login-submit')));
     }
 
     public function parseFormData($data)

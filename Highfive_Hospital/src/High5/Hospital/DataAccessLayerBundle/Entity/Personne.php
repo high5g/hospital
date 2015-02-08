@@ -361,6 +361,8 @@ class Personne implements UserInterface, \Serializable
             $this->username,
             $this->mdp,
             $this->fkHopital,
+            $this->nom,
+            $this->prenom,
             // see section on salt below
             // $this->salt,
         ));
@@ -372,6 +374,8 @@ class Personne implements UserInterface, \Serializable
             $this->username,
             $this->mdp,
             $this->fkHopital,
+            $this->nom,
+            $this->prenom,
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized);

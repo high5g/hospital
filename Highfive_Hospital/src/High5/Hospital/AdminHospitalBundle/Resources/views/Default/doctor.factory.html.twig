@@ -1,3 +1,16 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+{% extends 'High5HospitalAdminHospitalBundle:Default:base.html.twig' %}
+
+{% block title %}Add Doctor{% endblock %}
+
+{% block body %}
+    <div class="login-card">
+        <h1>Add Doctor</h1><br>
+        {% block content %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        {% endblock %}
+        <div><a href="{{ path('_welcome') }}admin_hospital/homepage">Cancel</a></div>
+        <div class="login-help"></div>
+    </div>
+{% endblock %}
