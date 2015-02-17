@@ -1,0 +1,23 @@
+high5_hospital_patient_homepage:
+    path:     /homepage
+    defaults: { _controller: High5HospitalPatientBundle:Default:index }
+
+high5_hospital_patient_login:
+    path: /login
+    defaults: { _controller: High5HospitalPatientBundle:Default:login }
+
+high5_hospital_patient_logout:
+    path: /logout
+    defaults: { _controller: High5HospitalPatientBundle:Default:logOut }
+
+high5_hospital_patient_list_doctors:
+    path: /list/doctors
+    defaults: { _controller: High5HospitalPatientBundle:Default:listAvailableDoctors }
+
+high5_hospital_patient_view_medical_file:
+    path: /view/medicalfile
+    defaults: { _controller: High5HospitalPatientBundle:Default:viewMedicalFile }
+
+high5_hospital_patient_make_appointment:
+    path: /create/rdv
+    defaults: { _controller: High5HospitalPatientBundle:Default:createRendezvous }

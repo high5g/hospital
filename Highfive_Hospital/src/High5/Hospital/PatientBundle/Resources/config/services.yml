@@ -1,0 +1,4 @@
+services:
+#    high5_hospital_patient.example:
+#        class: High5\Hospital\PatientBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

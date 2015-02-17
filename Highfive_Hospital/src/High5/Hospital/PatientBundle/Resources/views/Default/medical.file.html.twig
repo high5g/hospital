@@ -1,0 +1,9 @@
+{% extends 'High5HospitalPatientBundle:Default:base.html.twig' %}
+
+{% block body %}
+    <div>First name: {{ patient.fkPersonne.prenom }}</div>
+    <div>Last name: {{ patient.fkPersonne.nom }}</div>
+    <div>Social coverage number: {{ patient.idCouvertureSociale }}</div>
+    <div>Date of arrival: {{ patient.dateEntree|date('Y-m-d') }}</div>
+    <div>Date of departure: {{ patient.dateSortie|date('Y-m-d') }}</div>
+{% endblock %}
