@@ -26,7 +26,7 @@ class DefaultController extends Controller
         $user = $this->getActiveUser();
         if ($user == null)
         {
-            return $this->redirect($this->generateUrl('high5_hospital_adminhospital_login'));
+            return $this->redirect($this->generateUrl('high5_hospital_patient_login'));
         }
         return $this->render('High5HospitalPatientBundle:Default:homepage.html.twig',
                 array('username' => $user->getNom() . ' ' . $user->getPrenom()));
