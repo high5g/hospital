@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new High5\Hospital\AdminBundle\High5HospitalAdminBundle(),
             new High5\Hospital\AdminHospitalBundle\High5HospitalAdminHospitalBundle(),
             new High5\Hospital\DataAccessLayerBundle\High5HospitalDataAccessLayerBundle(),
+            new High5\Hospital\DoctorBundle\High5HospitalDoctorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

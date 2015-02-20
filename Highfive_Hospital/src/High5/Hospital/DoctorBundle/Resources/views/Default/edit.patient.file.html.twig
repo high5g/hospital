@@ -1,0 +1,22 @@
+{% extends 'High5HospitalDoctorBundle:Default:base.html.twig' %}
+
+{% block body %}
+    <script language="javascript">
+    function findPatient(patientName) {
+    $.post('{{path('high5_hospital_doctor_find_patient_file')}}', {name: patientName},
+            function (response) {
+                $("#patientInfo").html(response.result);
+            }, "json");
+        }
+
+        $(document).ready(function () {
+            $('button').on('click', function () {
+                findPatient($('input').val());
+            });
+        });
+</script>
+    <div>Search patient:</div>
+    <div><input type="text"/>
+    <button>Search</button></div>
+    <div id="patientInfo"></div>
+{% endblock %}

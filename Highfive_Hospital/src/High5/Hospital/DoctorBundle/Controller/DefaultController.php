@@ -1,12 +1,13 @@
 <?php
 
-namespace High5\Hospital\PatientBundle\Controller;
+namespace High5\Hospital\DoctorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use High5\Hospital\DataAccessLayerBundle\Entity\Personne;
 use High5\Hospital\DataAccessLayerBundle\Utils\UserUtils;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -27,9 +28,9 @@ class DefaultController extends Controller
         $user = $this->getActiveUser();
         if ($user == null)
         {
-            return $this->redirect($this->generateUrl('high5_hospital_patient_login'));
+            return $this->redirect($this->generateUrl('high5_hospital_doctor_login'));
         }
-        return $this->render('High5HospitalPatientBundle:Default:homepage.html.twig',
+        return $this->render('High5HospitalDoctorBundle:Default:homepage.html.twig',
                 array('username' => $user->getNom() . ' ' . $user->getPrenom()));
     }
 
@@ -51,7 +52,7 @@ class DefaultController extends Controller
         {
             $result = UserUtils::findUser($doctrine = $this->getDoctrine(),
                     $form["username"]->getData(), $form["mdp"]->getData(),
-                    $form["fkHopital"]->getData()->getId(), 2);
+                    $form["fkHopital"]->getData()->getId(), 1);
             if ($result == null)
             {
                 $message = "Login failed. No match has been found for the specified username.";
@@ -61,43 +62,37 @@ class DefaultController extends Controller
             $session = new Session();
             $session->set('active_user', $result[0]);
 
-            return $this->redirect($this->generateUrl('high5_hospital_patient_homepage'));
+            return $this->redirect($this->generateUrl('high5_hospital_doctor_homepage'));
         }
-        return $this->render('High5HospitalPatientBundle:Default:login.html.twig',
+        return $this->render('High5HospitalDoctorBundle:Default:login.html.twig',
                 array('login_form' => $form->createView()));
     }
 
-    public function listAvailableDoctorsAction()
+    public function planRendezvousAction()
     {
-        $hospital = $this->getActiveUser()->getFkHopital();
-        $query = $this->getDoctrine()->getEntityManager()->createQuery('select m'
-                . ' from High5HospitalDataAccessLayerBundle:Medecin m'
-                . ' join m.fkPersonne p'
-                . ' where p.fkHopital = :hospitalId');
-        $query->setParameter('hospitalId', $hospital->getId());
-        $doctors = $query->getResult();
-        return $this->render('High5HospitalPatientBundle:Default:doctors.list.html.twig',
-                array('doctors' => $doctors, 'hospitalName' => $hospital->getNom()));
+        return $this->render("High5HospitalDoctorBundle:Default:plan.rdv.html.twig");
     }
 
-    public function viewMedicalFileAction()
+    public function findPatientFileAction(Request $request)
     {
-        $dataAccessObject = $this->getDoctrine()->getRepository('High5HospitalDataAccessLayerBundle:Patient');
-        $activeUser = $this->getActiveUser();
-        $patients = $dataAccessObject->findBy(['fkPersonne' => $activeUser->getId()]);
-        return $this->render('High5HospitalPatientBundle:Default:medical.file.html.twig',
-                array('patient' => $patients[0]));
+        $patientName = $request->get('name');
+        $dao = $this->getDoctrine()->getRepository('High5HospitalDataAccessLayerBundle:Personne');
+        $result = $dao->findBy(array("prenom" => $patientName, "classe" => 2));
+        if ($result != null) {
+            $patientName = $result[0]->getNom() . ' ' . $result[0]->getPrenom();
+        }
+        else
+        {
+            $patientName = "No match has been found";
+        }
+        $response = ["code" => 100, "success" => true, "result" => $patientName];
+        // Return result as JSon
+        return new JsonResponse($response);
     }
 
-    public function createRendezvousAction()
+    public function editPatientFileAction()
     {
-        return $this->render('High5HospitalPatientBundle:Default:create.rdv.html.twig');
-    }
-
-    public function logOutAction()
-    {
-        $this->session->remove('active_user');
-        return $this->redirect($this->generateUrl('high5_hospital_patient_login'));
+        return $this->render("High5HospitalDoctorBundle:Default:edit.patient.file.html.twig");
     }
 
 }

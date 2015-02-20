@@ -1,0 +1,12 @@
+{% extends 'High5HospitalDoctorBundle:Default:base.html.twig' %}
+
+{% block body %}
+    Welcome {{ username }}!
+
+    <div>
+        <a href="{{ path('_welcome') }}doctor/planrdv">Plan a rendezvous</a>
+    </div>
+    <div>
+        <a href="{{ path('_welcome') }}doctor/edit/patientfile">Edit patients files</a>
+    </div>
+{% endblock %}
