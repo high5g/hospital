@@ -76,18 +76,29 @@ class DefaultController extends Controller
     public function findPatientFileAction(Request $request)
     {
         $patientName = $request->get('name');
-        $dao = $this->getDoctrine()->getRepository('High5HospitalDataAccessLayerBundle:Personne');
-        $result = $dao->findBy(array("prenom" => $patientName, "classe" => 2));
-        if ($result != null) {
-            $patientName = $result[0]->getNom() . ' ' . $result[0]->getPrenom();
+        $dao = $this->getDoctrine()->getEntityManager()
+                ->getRepository('High5HospitalDataAccessLayerBundle:Personne');
+        $query = $dao->createQueryBuilder('p')
+                ->where('p.fkHopital = :hospitalId')
+                ->andWhere('p.classe = 2')
+                ->andWhere('(p.nom LIKE :word or p.prenom LIKE :word)')
+                ->setParameter('word', '%' . $patientName . '%')
+                ->setParameter('hospitalId', $this->getActiveUser()->getFkHopital()->getId())
+                ->getQuery();
+        $result = $query->getArrayResult();
+        if ($result != null)
+        {
+            $view = $this->renderView("High5HospitalDoctorBundle:Default:patients.list.html.twig",
+                    array('hospitalName' => $this->getActiveUser()->getFkHopital()->getNom(),
+                        'patients' => $result));
+            $response = ["code" => 100, "success" => true, "result" => $view];
+            return new JsonResponse($response);
         }
         else
         {
-            $patientName = "No match has been found";
+            $response = ["code" => 100, "success" => false, "result" => "No match has been found"];
+            return new JsonResponse($response);
         }
-        $response = ["code" => 100, "success" => true, "result" => $patientName];
-        // Return result as JSon
-        return new JsonResponse($response);
     }
 
     public function editPatientFileAction()

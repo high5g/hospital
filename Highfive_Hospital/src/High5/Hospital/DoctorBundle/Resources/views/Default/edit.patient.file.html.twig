@@ -5,7 +5,12 @@
     function findPatient(patientName) {
     $.post('{{path('high5_hospital_doctor_find_patient_file')}}', {name: patientName},
             function (response) {
-                $("#patientInfo").html(response.result);
+                if (response.success === true) {
+                    $("#patientInfo").html(response.result);
+
+                } else {
+                    $("#patientInfo").html(response.result);
+                }
             }, "json");
         }
 
