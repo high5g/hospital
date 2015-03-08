@@ -2,11 +2,18 @@
 
 {% block body %}
     Welcome {{ username }}!
-
-    <div>
-        <a href="{{ path('_welcome') }}doctor/planrdv">Plan a rendezvous</a>
-    </div>
-    <div>
-        <a href="{{ path('_welcome') }}doctor/edit/patientfile">Edit patients files</a>
-    </div>
+    <ul>
+        <li>
+            <a href="{{ path('_welcome') }}doctor/planrdv">Plan a rendezvous</a>
+        </li>
+        <li>
+            <a href="{{ path('_welcome') }}doctor/view/rdvplanning">View rendezvous planning</a>
+        </li>
+        <li>
+            <a href="{{ path('_welcome') }}doctor/edit/patientfile">Edit patients files</a>
+        </li>
+        <li>
+            <a href="{{ path('_welcome') }}doctor/logout">Logout</a>
+        </li>
+    </ul>
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block body %}
     <script language="javascript">
     function findPatient(patientName) {
-    $.post('{{path('high5_hospital_doctor_find_patient_file')}}', {name: patientName},
+        $.post('{{path('high5_hospital_doctor_find_patient_file')}}', {name: patientName},
             function (response) {
                 if (response.success === true) {
                     $("#patientInfo").html(response.result);
@@ -19,9 +19,11 @@
                 findPatient($('input').val());
             });
         });
-</script>
-    <div>Search patient:</div>
-    <div><input type="text"/>
-    <button>Search</button></div>
-    <div id="patientInfo"></div>
+    </script>
+    <div class="container">
+        <div>Search patient:</div>
+        <div><input type="text"/>
+        <button class="btn btn-default">Search</button></div>
+        <div id="patientInfo"></div>
+    </div>
 {% endblock %}

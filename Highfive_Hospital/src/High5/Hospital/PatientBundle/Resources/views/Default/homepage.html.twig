@@ -3,16 +3,18 @@
 {% block body %}
     Welcome {{ username }}!
 
-    <div>
-        <a href="{{ path('_welcome') }}patient/list/doctors">List available doctors</a>
-    </div>
-    <div>
-        <a href="{{ path('_welcome') }}patient/view/medicalfile">View medical file</a>
-    </div>
-    <div>
-        <a href="{{ path('_welcome') }}patient/create/rdv">Make an appointment with a doctor</a>
-    </div>
-    <div>
-        <a href="{{ path('_welcome') }}patient/logout">Logout</a>
-    </div>
+    <ul class="modal-body">
+        <li>
+            <a href="{{ path('_welcome') }}patient/list/doctors">List available doctors</a>
+        </li>
+        <li>
+            <a href="{{ path('_welcome') }}patient/view/medicalfile">View medical file</a>
+        </li>
+        <li>
+            <a href="{{ path('_welcome') }}patient/create/rdv">Make an appointment with a doctor</a>
+        </li>
+        <li>
+            <a href="{{ path('_welcome') }}patient/logout">Logout</a>
+        </li>
+    </ul>
 {% endblock %}

@@ -13,3 +13,7 @@ high5_hospital_admin_hospital:
 high5_hospital_doctor:
     resource: "@High5HospitalDoctorBundle/Resources/config/routing.yml"
     prefix:   /doctor
+
+high5_hospital_patient:
+    resource: "@High5HospitalPatientBundle/Resources/config/routing.yml"
+    prefix:   /patient

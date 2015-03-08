@@ -19,8 +19,8 @@ class DoctorForm extends PersonForm
     public function parseFormData($data)
     {
         $person = parent::parseFormData($data);
+        $person->setClasse(1);
         $medecin = new Medecin();
-        $medecin->setClasse(1);
         $medecin->setSpecialite($data['specialite']);
         $medecin->setTarifParConsultation($data['tarifParConsultation']);
         $medecin->setFkPersonne($person);

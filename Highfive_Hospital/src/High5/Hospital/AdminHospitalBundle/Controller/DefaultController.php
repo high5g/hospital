@@ -95,7 +95,7 @@ class DefaultController extends Controller
             $doctrineManager->persist($patient);
             $doctrineManager->flush();
 
-            return $this->redirect($this->generateUrl('high5_hospital_admin_hospital_homepage'));
+            return $this->redirect($this->generateUrl('high5_hospital_adminhospital_homepage'));
         }
         return $this->render('High5HospitalAdminHospitalBundle:Default:patient.factory.html.twig',
                 array('form' => $form->createView()));
@@ -120,7 +120,7 @@ class DefaultController extends Controller
             $doctrineManager->persist($medecin);
             $doctrineManager->flush();
 
-            return $this->redirect($this->generateUrl('high5_hospital_admin_hospital_homepage'));
+            return $this->redirect($this->generateUrl('high5_hospital_adminhospital_homepage'));
         }
         return $this->render('High5HospitalAdminHospitalBundle:Default:doctor.factory.html.twig',
                 array('form' => $form->createView()));

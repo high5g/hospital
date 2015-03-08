@@ -1,0 +1,23 @@
+{% extends 'High5HospitalDoctorBundle:Default:base.html.twig' %}
+
+{% block body %}
+    <div class="center-block">
+        <div>
+            Rendezvous Planning of Doctor {{ doctorName }}:
+        </div>
+        <table class="table">
+            <tr>
+                <th>Id</th>
+                <th>Visit date</th>
+                <th>Patient full name</th>
+            </tr>
+            {% for rdv in rdvs %}
+                <tr>
+                    <td id="rdvId{{ rdv.id }}">{{ rdv.id }}</td>
+                    <td id="rdvDate{{ rdv.id }}">{{ rdv.dateVisite|date("m/d/Y") }}</td>
+                    <td id="patientFullName{{ rdv.id }}">{{ rdv.fkPatient.fkPersonne.prenom }} {{ rdv.fkPatient.fkPersonne.nom }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

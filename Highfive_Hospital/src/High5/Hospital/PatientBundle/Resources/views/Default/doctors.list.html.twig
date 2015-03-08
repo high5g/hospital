@@ -1,23 +1,25 @@
 {% extends 'High5HospitalPatientBundle:Default:base.html.twig' %}
 
 {% block body %}
-    <div>
-        List of doctors in {{ hospitalName }}:
-    </div>
-    <table>
-        <tr>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Speciality</th>
-            <th>Hourly rate</th>
-        </tr>
-        {% for doctor in doctors %}
+    <div class="center-block">
+        <div>
+            <h2>List of doctors in {{ hospitalName }}:</h2>
+        </div>
+        <table class="table">
             <tr>
-                <td>{{ doctor.fkPersonne.prenom }}</td>
-                <td>{{ doctor.fkPersonne.nom }}</td>
-                <td>{{ doctor.specialite }}</td>
-                <td>{{ doctor.tarifParConsultation }}</td>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Speciality</th>
+                <th>Hourly rate</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for doctor in doctors %}
+                <tr>
+                    <td>{{ doctor.fkPersonne.prenom }}</td>
+                    <td>{{ doctor.fkPersonne.nom }}</td>
+                    <td>{{ doctor.specialite }}</td>
+                    <td>{{ doctor.tarifParConsultation }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

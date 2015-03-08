@@ -1,17 +1,78 @@
+<script>
+    function showPatientDetails(patientId) {
+{#        patientId = $("#id").text();#}
+        patientFirstName = $("#firstName" + patientId).text();
+        patientLastName = $("#lastName" + patientId).text();
+        $.post('{{path('high5_hospital_doctor_find_patient_appointment')}}',
+            {id: patientId},
+            function (response) {
+                if (response.success === true) {
+                    $("#patient-id").html(patientId);
+                    $("#patient-name").html(patientFirstName + ' ' + patientLastName);    
+                    $("#desc").html(response.result.description);
+                    $("#rdvDate").html(response.result.fkRdv.dateVisite.date);
+                    $('#myModal').modal('show');
+                } else {
+                    alert(response.result);
+                }
+            }, "json");
+    }
+
+    function savePatientAppointmentInfo() {
+        patientId = $("#patient-id").text();
+        description = $("#desc").val();
+        $.post('{{path('high5_hospital_doctor_save_patient_appointment_info')}}',
+            {id: patientId, desc: description},
+            function (response) {
+                alert(response.result);
+                $('#myModal').modal('hide');
+            }, "json");
+    }
+</script>
 {% block table %}
     <div>
         List of patients in {{ hospitalName }}:
     </div>
-    <table>
+    <table class="table">
         <tr>
+            <th>Id</th>
             <th>First name</th>
             <th>Last name</th>
         </tr>
         {% for patient in patients %}
             <tr>
-                <td>{{ patient.prenom }}</td>
-                <td>{{ patient.nom }}</td>
+                <td id="id{{ patient.id }}">{{ patient.id }}</td>
+                <td id="firstName{{ patient.id }}">{{ patient.fkPersonne.prenom }}</td>
+                <td id="lastName{{ patient.id }}">{{ patient.fkPersonne.nom }}</td>
+                <td><button onclick="showPatientDetails({{ patient.id }})" class="btn btn-default">View</button></td>
             </tr>
         {% endfor %}
     </table>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Patient details</h4>
+          </div>
+            <div class="modal-body">
+                <div>
+                    <span>Patient Id: </span><span id="patient-id"></span>
+                </div>
+                <div>
+                    <span>Patient full name: </span><span id="patient-name"></span>
+                </div>
+                <div id="visite-date"></div>
+                <div>Last Rendez-vous date: <span id="rdvDate"></span></div>
+                <div>Description</div>
+                <textarea id="desc"></textarea>
+            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="savePatientAppointmentInfo()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 {% endblock %}

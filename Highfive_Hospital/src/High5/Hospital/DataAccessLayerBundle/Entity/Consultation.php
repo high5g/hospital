@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="consultation", indexes={@ORM\Index(name="fk_id_rdv", columns={"fk_id_rdv"})})
  * @ORM\Entity
  */
-class Consultation
+class Consultation implements \Serializable
 {
     /**
      * @var integer
@@ -95,4 +95,24 @@ class Consultation
     {
         return $this->fkRdv;
     }
+
+    public function serialize() {
+        return serialize(array(
+            'id' => $this->id,
+            'description' => $this->description,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    public function unserialize($serialized) {
+        list (
+            $this->id,
+            $this->description,
+            $this->fkRdv,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized);
+    }
+
 }

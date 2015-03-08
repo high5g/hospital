@@ -6,6 +6,10 @@ high5_hospital_doctor_login:
     path: /login
     defaults: { _controller: High5HospitalDoctorBundle:Default:login }
 
+high5_hospital_doctor_login:
+    path: /logout
+    defaults: { _controller: High5HospitalDoctorBundle:Default:logout }
+
 high5_hospital_doctor_logout:
     path: /logout
     defaults: { _controller: High5HospitalDoctorBundle:Default:logOut }
@@ -14,6 +18,10 @@ high5_hospital_doctor_plan_rdv:
     path: /planrdv
     defaults: { _controller: High5HospitalDoctorBundle:Default:planRendezvous }
 
+high5_hospital_doctor_view_rdv_planning:
+    path: /view/rdvplanning
+    defaults: { _controller: High5HospitalDoctorBundle:Default:viewRendezvousPlanning }
+
 high5_hospital_doctor_edit_patient_file:
     path: /edit/patientfile
     defaults: { _controller: High5HospitalDoctorBundle:Default:editPatientFile }
@@ -21,3 +29,11 @@ high5_hospital_doctor_edit_patient_file:
 high5_hospital_doctor_find_patient_file:
     path: /find/patientfile
     defaults: { _controller: High5HospitalDoctorBundle:Default:findPatientFile }
+    
+high5_hospital_doctor_find_patient_appointment:
+    path: /find/patientappointment
+    defaults: { _controller: High5HospitalDoctorBundle:Default:findPatientAppointment }
+
+high5_hospital_doctor_save_patient_appointment_info:
+    path: /save/patientappointmentinfo
+    defaults: { _controller: High5HospitalDoctorBundle:Default:savePatientAppointmentInfo }

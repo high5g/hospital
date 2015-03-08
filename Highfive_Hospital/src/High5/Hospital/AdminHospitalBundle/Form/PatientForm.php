@@ -20,8 +20,8 @@ class PatientForm extends PersonForm
     public function parseFormData($data)
     {
         $person = parent::parseFormData($data);
+        $person->setClasse(2);
         $patient = new Patient();
-        $patient->setClasse(2);
         $patient->setIdCouvertureSociale($data['idCouvertureSociale']);
         $patient->setDateEntree($data['dateEntree']);
         $patient->setDateSortie($data['dateSortie']);

@@ -1,7 +1,13 @@
 {% extends 'High5HospitalDoctorBundle:Default:base.html.twig' %}
 
 {% block body %}
-    Plan your rendezvous
-
-    <div></div>
+    Plan your rendezvous:
+{#    <input data-provide="datepicker">#}
+    {% block content %}
+        <div class="container center-block">
+            {{ form_start(rdv_form) }}
+            {{ form_widget(rdv_form) }}
+            {{ form_end(rdv_form) }}
+        </div>
+    {% endblock %}
 {% endblock %}

@@ -4,6 +4,7 @@ namespace High5\Hospital\AdminHospitalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use High5\Hospital\DataAccessLayerBundle\Entity\Personne;
 
 class PersonForm extends AbstractType
 {
@@ -20,7 +21,7 @@ class PersonForm extends AbstractType
 
     public function parseFormData($data)
     {
-        $person = new Person();
+        $person = new Personne();
         $person->setNom($data['nom']);
         $person->setPrenom($data['prenom']);
         $person->setCin($data['cin']);

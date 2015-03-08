@@ -20,7 +20,7 @@ class LoginController extends Controller
         {
             $username = $form["username"]->getData();
             $password = $form["password"]->getData();
-            $queryData = array('login' => $username, 'mdp' => $password);
+            $queryData = array('username' => $username, 'mdp' => $password);
             $result = $this->getDoctrine()->getRepository('High5\Hospital\DataAccessLayerBundle\Entity\Personne')->findBy($queryData);
             if ($result == null)
             {

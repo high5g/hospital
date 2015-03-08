@@ -37,8 +37,8 @@ class DefaultController extends Controller
     {
         $personne = new Personne();
         $form = $this->createFormBuilder($personne)
-            ->add('username', 'text', array('label' => 'Username'))
-            ->add('mdp', 'password', array('label' => 'Password'))
+            ->add('username', 'text', array('label' => 'Username', 'attr' => array('class' => 'form-control')))
+            ->add('mdp', 'password', array('label' => 'Password', 'attr' => array('class' => 'form-control')))
             ->add('fkHopital', 'entity', array(
                 'class' => 'High5HospitalDataAccessLayerBundle:Hopital',
                 'property' => 'nom',
