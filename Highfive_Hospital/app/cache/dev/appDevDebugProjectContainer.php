@@ -3058,6 +3058,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath('C:\\wamp\\www\\prod\\hospital-1\\Highfive_Hospital\\src\\High5\\Hospital\\DataAccessLayerBundle/Resources/views', 'High5HospitalDataAccessLayer');
         $instance->addPath('C:\\wamp\\www\\prod\\hospital-1\\Highfive_Hospital\\src\\High5\\Hospital\\DoctorBundle/Resources/views', 'High5HospitalDoctor');
         $instance->addPath('C:\\wamp\\www\\prod\\hospital-1\\Highfive_Hospital\\src\\High5\\Hospital\\PatientBundle/Resources/views', 'High5HospitalPatient');
+        $instance->addPath('C:\\wamp\\www\\prod\\hospital-1\\Highfive_Hospital\\src\\High5\\Hospital\\IndexBundle/Resources/views', 'High5HospitalIndex');
         $instance->addPath('C:\\wamp\\www\\prod\\hospital-1\\Highfive_Hospital\\src\\Acme\\DemoBundle/Resources/views', 'AcmeDemo');
         $instance->addPath('C:\\wamp\\www\\prod\\hospital-1\\Highfive_Hospital\\vendor\\symfony\\symfony\\src\\Symfony\\Bundle\\WebProfilerBundle/Resources/views', 'WebProfiler');
         $instance->addPath('C:\\wamp\\www\\prod\\hospital-1\\Highfive_Hospital\\vendor\\sensio\\distribution-bundle\\Sensio\\Bundle\\DistributionBundle/Resources/views', 'SensioDistribution');
@@ -3545,6 +3546,7 @@ class appDevDebugProjectContainer extends Container
                 'High5HospitalDataAccessLayerBundle' => 'High5\\Hospital\\DataAccessLayerBundle\\High5HospitalDataAccessLayerBundle',
                 'High5HospitalDoctorBundle' => 'High5\\Hospital\\DoctorBundle\\High5HospitalDoctorBundle',
                 'High5HospitalPatientBundle' => 'High5\\Hospital\\PatientBundle\\High5HospitalPatientBundle',
+                'High5HospitalIndexBundle' => 'High5\\Hospital\\IndexBundle\\High5HospitalIndexBundle',
                 'AcmeDemoBundle' => 'Acme\\DemoBundle\\AcmeDemoBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',

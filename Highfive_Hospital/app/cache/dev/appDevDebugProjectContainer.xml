@@ -21,6 +21,7 @@
       <parameter key="High5HospitalDataAccessLayerBundle">High5\Hospital\DataAccessLayerBundle\High5HospitalDataAccessLayerBundle</parameter>
       <parameter key="High5HospitalDoctorBundle">High5\Hospital\DoctorBundle\High5HospitalDoctorBundle</parameter>
       <parameter key="High5HospitalPatientBundle">High5\Hospital\PatientBundle\High5HospitalPatientBundle</parameter>
+      <parameter key="High5HospitalIndexBundle">High5\Hospital\IndexBundle\High5HospitalIndexBundle</parameter>
       <parameter key="AcmeDemoBundle">Acme\DemoBundle\AcmeDemoBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -2847,6 +2848,10 @@
       <call method="addPath">
         <argument>C:\wamp\www\prod\hospital-1\Highfive_Hospital\src\High5\Hospital\PatientBundle/Resources/views</argument>
         <argument>High5HospitalPatient</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\wamp\www\prod\hospital-1\Highfive_Hospital\src\High5\Hospital\IndexBundle/Resources/views</argument>
+        <argument>High5HospitalIndex</argument>
       </call>
       <call method="addPath">
         <argument>C:\wamp\www\prod\hospital-1\Highfive_Hospital\src\Acme\DemoBundle/Resources/views</argument>

@@ -1,3 +1,7 @@
+high5_hospital_index:
+    resource: "@High5HospitalIndexBundle/Resources/config/routing.yml"
+    prefix:   /index/
+
 high5_hospital_data_access_layer:
     resource: "@High5HospitalDataAccessLayerBundle/Resources/config/routing.yml"
     prefix:   /

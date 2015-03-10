@@ -20,7 +20,7 @@
         <link href="{{ asset('assets/css/layout2.css') }}" rel="stylesheet" />
         <!-- END PAGE LEVEL  STYLES -->
         <!-- PAGE LEVEL STYLES -->
-        <link href="{{ asset('assets/css/layout2.css" rel="stylesheet') }}" />
+        <link href="{{ asset('assets/css/layout2.css') }}" rel="stylesheet" />
         <!-- END PAGE LEVEL  STYLES -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -47,7 +47,7 @@
                     <header class="navbar-header">
 
                         <a href="index.html" class="navbar-brand">
-                            <img src="assets/img/logo.png" alt="" /></a>
+                            <img src="{{ asset('assets/img/logo.png') }}" alt="" /></a>
                     </header>
                     <!-- END LOGO SECTION -->
                     <ul class="nav navbar-top-links navbar-right">
@@ -598,11 +598,10 @@
 
     {% block footer %}
         <!-- FOOTER -->
-        <!-- FOOTER -->
-        <div id="footer">
+         <div id="footer">
             <p>&copy;  binaryWertani &nbsp;2014 &nbsp;</p>
         </div>
-          -->
+           
         <!--END FOOTER -->
     {% endblock %}
 

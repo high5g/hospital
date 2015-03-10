@@ -75,8 +75,8 @@ class __TwigTemplate_e5557013573ded65bf17b078223b5ccb4d1ce71fd782d10c39995f53c06
         <!-- PAGE LEVEL STYLES -->
         <link href=\"";
         // line 23
-        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/css/layout2.css\" rel=\"stylesheet"), "html", null, true);
-        echo "\" />
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/css/layout2.css"), "html", null, true);
+        echo "\" rel=\"stylesheet\" />
         <!-- END PAGE LEVEL  STYLES -->
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -119,47 +119,47 @@ class __TwigTemplate_e5557013573ded65bf17b078223b5ccb4d1ce71fd782d10c39995f53c06
     ";
         // line 599
         $this->displayBlock('footer', $context, $blocks);
-        // line 608
+        // line 607
         echo "
 ";
-        // line 609
+        // line 608
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 610
+        // line 609
         echo "
 <!-- GLOBAL SCRIPTS -->
 <script src=\"";
-        // line 612
+        // line 611
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/plugins/jquery-2.0.3.min.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 613
+        // line 612
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/plugins/bootstrap/js/bootstrap.min.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 614
+        // line 613
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"), "html", null, true);
         echo "\"></script>
 <!-- END GLOBAL SCRIPTS -->
 
 <!-- PAGE LEVEL SCRIPTS -->
 <script src=\"";
-        // line 618
+        // line 617
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/plugins/flot/jquery.flot.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 619
+        // line 618
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/plugins/flot/jquery.flot.resize.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 620
+        // line 619
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/plugins/flot/jquery.flot.time.js"), "html", null, true);
         echo "\"></script>
 <script  src=\"";
-        // line 621
+        // line 620
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/plugins/flot/jquery.flot.stack.js"), "html", null, true);
         echo "\"></script>
 <script src=\"";
-        // line 622
+        // line 621
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/js/for_index.js"), "html", null, true);
         echo "\"></script>
 
@@ -196,7 +196,10 @@ class __TwigTemplate_e5557013573ded65bf17b078223b5ccb4d1ce71fd782d10c39995f53c06
                     <header class=\"navbar-header\">
 
                         <a href=\"index.html\" class=\"navbar-brand\">
-                            <img src=\"assets/img/logo.png\" alt=\"\" /></a>
+                            <img src=\"";
+        // line 50
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("assets/img/logo.png"), "html", null, true);
+        echo "\" alt=\"\" /></a>
                     </header>
                     <!-- END LOGO SECTION -->
                     <ul class=\"nav navbar-top-links navbar-right\">
@@ -761,16 +764,15 @@ class __TwigTemplate_e5557013573ded65bf17b078223b5ccb4d1ce71fd782d10c39995f53c06
     {
         // line 600
         echo "        <!-- FOOTER -->
-        <!-- FOOTER -->
-        <div id=\"footer\">
+         <div id=\"footer\">
             <p>&copy;  binaryWertani &nbsp;2014 &nbsp;</p>
         </div>
-          -->
+           
         <!--END FOOTER -->
     ";
     }
 
-    // line 609
+    // line 608
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -787,6 +789,6 @@ class __TwigTemplate_e5557013573ded65bf17b078223b5ccb4d1ce71fd782d10c39995f53c06
 
     public function getDebugInfo()
     {
-        return array (  774 => 609,  763 => 600,  760 => 599,  705 => 545,  698 => 540,  695 => 539,  446 => 293,  443 => 292,  187 => 38,  184 => 37,  179 => 30,  173 => 5,  163 => 622,  159 => 621,  155 => 620,  151 => 619,  147 => 618,  140 => 614,  136 => 613,  132 => 612,  128 => 610,  126 => 609,  123 => 608,  121 => 599,  115 => 595,  113 => 545,  110 => 544,  107 => 539,  105 => 292,  102 => 291,  100 => 37,  90 => 31,  88 => 30,  78 => 23,  72 => 20,  68 => 19,  64 => 18,  57 => 14,  53 => 13,  49 => 12,  45 => 11,  41 => 10,  33 => 5,  27 => 1,);
+        return array (  776 => 608,  766 => 600,  763 => 599,  708 => 545,  701 => 540,  698 => 539,  449 => 293,  446 => 292,  201 => 50,  187 => 38,  184 => 37,  179 => 30,  173 => 5,  163 => 621,  159 => 620,  155 => 619,  151 => 618,  147 => 617,  140 => 613,  136 => 612,  132 => 611,  128 => 609,  126 => 608,  123 => 607,  121 => 599,  115 => 595,  113 => 545,  110 => 544,  107 => 539,  105 => 292,  102 => 291,  100 => 37,  90 => 31,  88 => 30,  78 => 23,  72 => 20,  68 => 19,  64 => 18,  57 => 14,  53 => 13,  49 => 12,  45 => 11,  41 => 10,  33 => 5,  27 => 1,);
     }
 }

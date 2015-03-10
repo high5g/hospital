@@ -122,6 +122,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // high5_hospital_index_homepage
+        if (rtrim($pathinfo, '/') === '/index') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'high5_hospital_index_homepage');
+            }
+
+            return array (  '_controller' => 'High5\\Hospital\\IndexBundle\\Controller\\IndexController::indexAction',  '_route' => 'high5_hospital_index_homepage',);
+        }
+
         // high5_hospital_data_access_layer_homepage
         if (0 === strpos($pathinfo, '/hello') && preg_match('#^/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'high5_hospital_data_access_layer_homepage')), array (  '_controller' => 'High5\\Hospital\\DataAccessLayerBundle\\Controller\\DefaultController::indexAction',));

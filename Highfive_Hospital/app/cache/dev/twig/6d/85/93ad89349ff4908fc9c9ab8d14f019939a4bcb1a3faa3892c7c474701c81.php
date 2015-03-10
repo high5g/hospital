@@ -51,8 +51,9 @@ class __TwigTemplate_6d8593ad89349ff4908fc9c9ab8d14f019939a4bcb1a3faa3892c7c4747
             <hr /> 
 
         </div>
+    </div>
 
-    ";
+";
     }
 
     // line 15
@@ -85,6 +86,6 @@ class __TwigTemplate_6d8593ad89349ff4908fc9c9ab8d14f019939a4bcb1a3faa3892c7c4747
 
     public function getDebugInfo()
     {
-        return array (  71 => 18,  67 => 17,  62 => 16,  59 => 15,  48 => 20,  46 => 15,  32 => 3,  29 => 2,);
+        return array (  72 => 18,  68 => 17,  63 => 16,  60 => 15,  48 => 20,  46 => 15,  32 => 3,  29 => 2,);
     }
 }

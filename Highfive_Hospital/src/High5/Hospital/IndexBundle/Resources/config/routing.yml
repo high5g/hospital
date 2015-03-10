@@ -1,0 +1,3 @@
+high5_hospital_index_homepage:
+    path:     /
+    defaults: { _controller: High5HospitalIndexBundle:Index:index }
